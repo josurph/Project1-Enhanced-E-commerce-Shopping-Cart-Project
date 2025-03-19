@@ -51,7 +51,7 @@ class Cart: #creating cart class
         self.__cart_items = [product for product in self.__cart_items if product.product_id != product_id]
 
   def view_cart(self): #method to view the items in the cart
-        return [product.get_product_info() for product in self.__cart_items]
+        return [product.name for product in self.__cart_items]
 
   def calculate_total(self): #method to calculate the price of the products in the cart
         return sum(product.price for product in self.__cart_items)
@@ -87,7 +87,8 @@ class PercentageDiscount(Discount): #creating the percentage discount class
 
     def apply_discount(self, total): #method to apply the percentage discount to the total
       discount = (self.percentage / 100) * total
-      return total - discount
+      calculated_discount=total-discount
+      return(f"${calculated_discount:.2f}")
 
 
 class FixedAmountDiscount(Discount): #creating the fixed amount discount class
@@ -95,4 +96,6 @@ class FixedAmountDiscount(Discount): #creating the fixed amount discount class
       self.amount = amount #adding attributes to the class
 
     def apply_discount(self, total): #method to apply the fixed amount discount to the total
-      return total - self.amount
+      calculated_discount=total-self.amount
+      return(f"${calculated_discount:.2f}")
+
